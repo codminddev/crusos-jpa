@@ -8,12 +8,16 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import centripio.ecommerce.entity.enums.CustomerStatus;
 
 @Entity
 @Table(name="customers")
@@ -40,9 +44,18 @@ public class Customer {
 	@Column(name="reg_date", nullable=false, updatable=false)
 	private LocalDateTime regDate = LocalDateTime.now();
 	
-	@Column(name="localtimes")
-	private LocalTime locatime = LocalTime.now();
+	@Enumerated(EnumType.STRING)
+	@Column(name="status", nullable=false, length=8)
+	private CustomerStatus status;
 	
+	
+	
+	public CustomerStatus getStatus() {
+		return status;
+	}
+	public void setStatus(CustomerStatus status) {
+		this.status = status;
+	}
 	public LocalDateTime getRegDate() {
 		return regDate;
 	}
