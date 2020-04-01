@@ -1,6 +1,10 @@
 package centripio.ecommerce.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="customers")
@@ -20,15 +26,35 @@ public class Customer {
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name="firt_name", length=30, nullable=false, updatable=false, unique=true)
+	@Column(name="firt_name", length=30, nullable=false)
 	private String firtname;
 	
-	@Column(name="last_name", length=50, insertable=false)
+	@Column(name="last_name", length=50, nullable=false)
 	private String lastname;
 	
-	@Column(name="number", precision=10, scale=4)
-	private Float number;
+	//@Temporal(TemporalType.DATE)
+	@Column(name="birthday", nullable=false)
+	private LocalDate birthday;
 	
+	//@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="reg_date", nullable=false, updatable=false)
+	private LocalDateTime regDate = LocalDateTime.now();
+	
+	@Column(name="localtimes")
+	private LocalTime locatime = LocalTime.now();
+	
+	public LocalDateTime getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(LocalDateTime regDate) {
+		this.regDate = regDate;
+	}
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
 	public Long getId() {
 		return id;
 	}

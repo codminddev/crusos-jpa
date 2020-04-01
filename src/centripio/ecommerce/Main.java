@@ -1,5 +1,8 @@
 package centripio.ecommerce;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,27 +20,18 @@ public class Main {
 		//customer1.setId(1);
 		customer1.setFirtname("Oscar");
 		customer1.setLastname("Blancarte");
+		customer1.setBirthday(LocalDate.now());
 		em.persist(customer1);
 		
 		Customer customer2 = new Customer();
 		//customer1.setId(1);
 		customer2.setFirtname("Juan");
 		customer2.setLastname("Perez");
+		customer2.setBirthday(LocalDate.now());
 		em.persist(customer2);
 
 		em.getTransaction().commit();
 		
-		
-		//Update
-		em.getTransaction().begin();
-		Customer findCustomer = em.find(Customer.class, 1L);
-		System.out.println("findCustomer => " + findCustomer.getFirtname());
-		
-		findCustomer.setFirtname("Juanito");
-		findCustomer.setLastname("Ramirez");
-		em.persist(findCustomer);
-		
-		em.getTransaction().commit();
 		
 	}
 }
