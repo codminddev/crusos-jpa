@@ -1,5 +1,6 @@
 package centripio.ecommerce.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,13 +17,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.jboss.logging.Logger;
 
 import centripio.ecommerce.entity.enums.CustomerStatus;
 
 @Entity
 @Table(name="customers")
 //@SequenceGenerator(name="customer_sec", sequenceName="customer_sec", initialValue=1, allocationSize=1 )
-public class Customer {
+public class Customer implements Serializable{
+	
+	@Transient
+	private static final long serialVersionUID = 1L;
+
+	@Transient
+	private static final Logger logger = Logger.getLogger(Customer.class);
 	
 	@Id
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_sec" )
@@ -36,6 +46,9 @@ public class Customer {
 	@Column(name="last_name", length=50, nullable=false)
 	private String lastname;
 	
+	@Transient
+	private String fullName;
+	
 	//@Temporal(TemporalType.DATE)
 	@Column(name="birthday", nullable=false)
 	private LocalDate birthday;
@@ -48,8 +61,14 @@ public class Customer {
 	@Column(name="status", nullable=false, length=8)
 	private CustomerStatus status;
 	
+	public String getFullName() {
+		return fullName;
+	}
 	
-	
+	private void setFullName(String fullName) {
+		logger.info("fullname updated ==> " + fullName);
+		this.fullName = fullName;
+	}
 	public CustomerStatus getStatus() {
 		return status;
 	}
@@ -79,11 +98,13 @@ public class Customer {
 	}
 	public void setFirtname(String firtname) {
 		this.firtname = firtname;
+		setFullName(firtname + " " + lastname);
 	}
 	public String getLastname() {
 		return lastname;
 	}
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+		setFullName(firtname + " " + lastname);
 	}
 }
