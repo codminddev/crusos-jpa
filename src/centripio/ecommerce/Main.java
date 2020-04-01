@@ -18,19 +18,26 @@ public class Main {
 		customer1.setFirtname("Oscar");
 		customer1.setLastname("Blancarte");
 		em.persist(customer1);
-
+		
 		Customer customer2 = new Customer();
-		//customer2.setId(2);
+		//customer1.setId(1);
 		customer2.setFirtname("Juan");
 		customer2.setLastname("Perez");
 		em.persist(customer2);
-		
+
 		em.getTransaction().commit();
 		
-		Customer findCustomer = em.find(Customer.class, 1);
+		
+		//Update
+		em.getTransaction().begin();
+		Customer findCustomer = em.find(Customer.class, 1L);
 		System.out.println("findCustomer => " + findCustomer.getFirtname());
 		
+		findCustomer.setFirtname("Juanito");
+		findCustomer.setLastname("Ramirez");
+		em.persist(findCustomer);
 		
+		em.getTransaction().commit();
 		
 	}
 }

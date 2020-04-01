@@ -1,5 +1,8 @@
 package centripio.ecommerce.entity;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +17,17 @@ public class Customer {
 	@Id
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_sec" )
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
+	
+	@Column(name="firt_name", length=30, nullable=false, updatable=false, unique=true)
 	private String firtname;
+	
+	@Column(name="last_name", length=50, insertable=false)
 	private String lastname;
+	
+	@Column(name="number", precision=10, scale=4)
+	private Float number;
 	
 	public Long getId() {
 		return id;
