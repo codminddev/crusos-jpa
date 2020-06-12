@@ -1,4 +1,4 @@
-package centripio.ecommerce.entity;
+package orderapi.ecommerce.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ import javax.persistence.Transient;
 
 import org.jboss.logging.Logger;
 
-import centripio.ecommerce.entity.enums.CustomerStatus;
+import orderapi.ecommerce.entity.enums.CustomerStatus;
 
 @Entity
 @Table(name="customers")

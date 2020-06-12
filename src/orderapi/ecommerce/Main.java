@@ -1,4 +1,4 @@
-package centripio.ecommerce;
+package orderapi.ecommerce;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import centripio.ecommerce.entity.Customer;
-import centripio.ecommerce.entity.enums.CustomerStatus;
+import orderapi.ecommerce.entity.Customer;
+import orderapi.ecommerce.entity.enums.CustomerStatus;
 
 public class Main {
 	public static void main(String[] args) {

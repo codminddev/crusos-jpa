@@ -1,4 +1,4 @@
-package centripio.ecommerce.entity.enums;
+package orderapi.ecommerce.entity.enums;
 
 public enum CustomerStatus {
 	DELETED,	// 1
