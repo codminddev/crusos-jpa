@@ -22,8 +22,9 @@ public class OrderLine {
 	@JoinColumn(name="fk_order", nullable=false, updatable=false)
 	private Order order;
 	
-	@Column(name="product", length=100, nullable=false)
-	private String product;
+	@ManyToOne
+	@JoinColumn(name="fk_product", nullable=false)
+	private Product product;
 	
 	@Column(name="quantity", nullable=false)
 	private Double quantity = 0d;
@@ -50,12 +51,15 @@ public class OrderLine {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	public String getProduct() {
+	
+	public Product getProduct() {
 		return product;
 	}
-	public void setProduct(String product) {
+
+	public void setProduct(Product product) {
 		this.product = product;
 	}
+
 	public Double getQuantity() {
 		return quantity;
 	}

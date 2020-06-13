@@ -25,7 +25,7 @@ public class OneToOne {
 
 		for (int c = 0; c < 10; c++) {
 			OrderLine line = new OrderLine();
-			line.setProduct("Product " + (c + 1));
+			//line.setProduct("Product " + (c + 1));
 			line.setQuantity(c + 1d);
 			line.setUnitPrice((c + 1) * 10d);
 			order.addLines(line);
