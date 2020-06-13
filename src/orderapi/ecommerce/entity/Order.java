@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -42,10 +43,10 @@ public class Order {
 	@Column(name="total", nullable=false)
 	private Double total = 0d;
 	
-	@OneToMany(mappedBy="order")
+	@OneToMany(mappedBy="order", cascade= {CascadeType.ALL})
 	private List<OrderLine> lines;
 	
-	@OneToOne(mappedBy="order")
+	@OneToOne(mappedBy="order", cascade= {CascadeType.PERSIST})
 	private Payment payment;
 	
 	public Payment getPayment() {
