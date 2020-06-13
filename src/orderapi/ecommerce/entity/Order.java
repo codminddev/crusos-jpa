@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import orderapi.ecommerce.entity.enums.Status;
@@ -44,6 +45,18 @@ public class Order {
 	@OneToMany(mappedBy="order")
 	private List<OrderLine> lines;
 	
+	@OneToOne(mappedBy="order")
+	private Payment payment;
+	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		payment.setOrder(this);
+		this.payment = payment;
+	}
+
 	private void updateTotal() {
 		List<OrderLine> lines = getLines();
 		double total = 0;
