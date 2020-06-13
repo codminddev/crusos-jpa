@@ -34,3 +34,6 @@ INSERT INTO order_lines (fk_product, quantity, total, unit_price, fk_order) VALU
 INSERT INTO order_lines (fk_product, quantity, total, unit_price, fk_order) VALUES (3 , 3,  90, 30, 2);
 INSERT INTO order_lines (fk_product, quantity, total, unit_price, fk_order) VALUES (4 , 4,  160, 40, 2);
 INSERT INTO order_lines (fk_product, quantity, total, unit_price, fk_order) VALUES (5 , 5,  250, 50, 2);
+
+insert into payments (amount, pay_method, fk_order) values(100, 'CREDIT',1);
+insert into payments (amount, pay_method, fk_order) values(100, 'DEBIT',2);
