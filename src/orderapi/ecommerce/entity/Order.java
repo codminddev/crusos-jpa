@@ -1,6 +1,8 @@
 package orderapi.ecommerce.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import orderapi.ecommerce.entity.enums.Status;
@@ -29,14 +32,45 @@ public class Order {
 	private Customer customer;
 	
 	@Column(name="reg_date", nullable=false, updatable=false)
-	private LocalDateTime regDate;
+	private LocalDateTime regDate = LocalDateTime.now();
 	
 	@Column(name="status", length=10, nullable=false)
 	@Enumerated(EnumType.STRING)
-	private Status status;
+	private Status status = Status.ACTIVE;
 	
 	@Column(name="total", nullable=false)
-	private Double total;
+	private Double total = 0d;
+	
+	@OneToMany(mappedBy="order")
+	private List<OrderLine> lines;
+	
+	private void updateTotal() {
+		List<OrderLine> lines = getLines();
+		double total = 0;
+		for(OrderLine line: lines) {
+			total += line.getTotal();
+		}
+		this.total = total;
+	}
+	
+	public void addLines(OrderLine line) {
+		List<OrderLine> lines = getLines();
+		line.setOrder(this);
+		lines.add(line);
+		updateTotal();
+	}
+	
+	public List<OrderLine> getLines() {
+		if(lines == null) {
+			lines = new ArrayList<OrderLine>();
+		}
+		return lines;
+	}
+
+	public void setLines(List<OrderLine> lines) {
+		this.lines = lines;
+		updateTotal();
+	}
 
 	public Long getId() {
 		return id;

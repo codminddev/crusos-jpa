@@ -1,0 +1,2 @@
+INSERT INTO customers (birthday, firt_name, last_name, reg_date, status) VALUES (curdate(), 'Oscar', 'Blancarte', now(), 'ACTIVE');
+INSERT INTO customers (birthday,firt_name,last_name, reg_date, status) VALUES (curdate(), 'Juan', 'Pérez', now(), 'ACTIVE');
