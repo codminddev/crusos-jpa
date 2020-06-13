@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +28,7 @@ public class Order {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="fk_customer", nullable=false, updatable=false)
 	private Customer customer;
 	
@@ -54,7 +53,7 @@ public class Order {
 	}
 
 	public void setPayment(Payment payment) {
-		//payment.setOrder(this);
+		payment.setOrder(this);
 		this.payment = payment;
 	}
 
