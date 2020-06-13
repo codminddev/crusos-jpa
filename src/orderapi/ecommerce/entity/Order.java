@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import orderapi.ecommerce.entity.enums.Status;
@@ -29,7 +31,7 @@ public class Order {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="fk_customer", nullable=false, updatable=false)
 	private Customer customer;
 	
@@ -43,6 +45,7 @@ public class Order {
 	@Column(name="total", nullable=false)
 	private Double total = 0d;
 	
+	@OrderBy("ctr asc")
 	@OneToMany(mappedBy="order", cascade= {CascadeType.ALL})
 	private List<OrderLine> lines;
 	

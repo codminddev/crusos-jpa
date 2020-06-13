@@ -3,6 +3,7 @@ package orderapi.ecommerce.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +37,17 @@ public class OrderLine {
 	@Column(name="total", nullable=false)
 	private Double total = 0d;
 	
+	@Column(name="ctr")
+	private Integer ctr;
+	
+	public Integer getCtr() {
+		return ctr;
+	}
+
+	public void setCtr(Integer ctr) {
+		this.ctr = ctr;
+	}
+
 	private void updateTotal() {
 		this.total = unitPrice * quantity;
 	}
