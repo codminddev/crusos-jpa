@@ -24,7 +24,7 @@ public class OrderLine {
 	@JoinColumn(name="fk_order", nullable=false, updatable=false)
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="fk_product", nullable=false)
 	private Product product;
 	
