@@ -19,6 +19,10 @@ insert into clasifications (name) values ('Clasification 3');
 
 INSERT INTO orders ( reg_date, status, total, fk_customer) VALUES (now(), 'ACTIVE', 3850, 1);
 INSERT INTO orders ( reg_date, status, total, fk_customer) VALUES (now(), 'INNACTIVE', 550, 2);
+INSERT INTO orders ( reg_date, status, total, fk_customer) VALUES ('2019/10/10', 'ACTIVE', 3850, 1);
+INSERT INTO orders ( reg_date, status, total, fk_customer) VALUES ('2018/10/10', 'ACTIVE', 3850, 1);
+INSERT INTO orders ( reg_date, status, total, fk_customer) VALUES ('2017/10/10', 'ACTIVE', 3850, 1);
+
 
 INSERT INTO order_lines (fk_product, quantity, total, unit_price, fk_order, ctr) VALUES (1 , 1,  10, 10, 1, 0);
 INSERT INTO order_lines (fk_product, quantity, total, unit_price, fk_order, ctr) VALUES (2 , 2,  40, 20, 1, 1);
