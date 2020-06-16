@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -19,8 +20,13 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PostUpdate;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 import orderapi.ecommerce.entity.enums.Status;
 
@@ -29,6 +35,7 @@ import orderapi.ecommerce.entity.enums.Status;
 @NamedQueries(value= {
 	@NamedQuery(name="Product.findByName", query="select p from Product p where UPPER(p.name) = UPPER(:name)")
 })
+@EntityListeners(EntityAudit.class)
 public class Product {
 
 	@Id
@@ -125,4 +132,17 @@ public class Product {
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
+	
+	/*
+	@PreUpdate
+	private void preUpdate() {
+		System.out.println("preUpdate > " + ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE));
+	}
+	
+	
+	@PostUpdate
+	private void postUpdate() {
+		System.out.println("postUpdate > " + ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE));
+	}
+	*/
 }

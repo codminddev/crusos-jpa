@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -37,6 +38,7 @@ import orderapi.ecommerce.entity.enums.Status;
 	@NamedNativeQuery(name="Order.orderByCustomerNative", query="select o.* from orders o where o.fk_customer = :customerID"),
 	@NamedNativeQuery(name="Order.findActiveOrdersNative", query="select o.* from orders o where o.status = 'ACTIVE'"),
 })
+@EntityListeners(EntityAudit.class)
 public class Order {
 	
 	@Id

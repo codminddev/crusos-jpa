@@ -80,7 +80,7 @@ public class Customer implements Serializable{
 	public static Logger getLogger() {
 		return logger;
 	}
-
+	
 	public String getFullName() {
 		return fullName;
 	}
