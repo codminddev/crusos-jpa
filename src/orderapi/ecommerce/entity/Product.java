@@ -14,13 +14,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import orderapi.ecommerce.entity.enums.Status;
 
 @Entity
 @Table(name="products")
+@NamedQueries(value= {
+	@NamedQuery(name="Product.findByName", query="select p from Product p where UPPER(p.name) = UPPER(:name)")
+})
 public class Product {
 
 	@Id
@@ -39,7 +45,11 @@ public class Product {
 	private Status status = Status.ACTIVE;
 	
 	@Column(name="reg_date", nullable=false, updatable=false)
-	private LocalDateTime regDate;
+	private LocalDateTime regDate = LocalDateTime.now();
+	
+	@Lob
+	@Column(name="image")
+	private byte[] image;
 	
 	@ManyToMany
 	@JoinTable(name="rel_prod_clas", 
@@ -48,6 +58,14 @@ public class Product {
 	)
 	private List<Clasification> clasifications;
 	
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	public void addClasification(Clasification clasification) {
 		List<Clasification> clasifications = getClasifications();
 		clasifications.add(clasification);
