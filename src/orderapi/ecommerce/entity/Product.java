@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -47,9 +48,8 @@ public class Product {
 	@Column(name="reg_date", nullable=false, updatable=false)
 	private LocalDateTime regDate = LocalDateTime.now();
 	
-	@Lob
-	@Column(name="image")
-	private byte[] image;
+	@Embedded
+	private Image image;
 	
 	@ManyToMany
 	@JoinTable(name="rel_prod_clas", 
@@ -58,11 +58,11 @@ public class Product {
 	)
 	private List<Clasification> clasifications;
 	
-	public byte[] getImage() {
+	public Image getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(Image image) {
 		this.image = image;
 	}
 

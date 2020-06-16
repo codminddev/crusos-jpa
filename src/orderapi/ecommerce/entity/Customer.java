@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.util.Calendar;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -59,8 +60,27 @@ public class Customer implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="status", nullable=false, length=8)
-	private CustomerStatus status;
+	private CustomerStatus status = CustomerStatus.ACTIVE;
 	
+	@Embedded
+	private Image avatar;
+	
+	public Image getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Image avatar) {
+		this.avatar = avatar;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
 	public String getFullName() {
 		return fullName;
 	}
