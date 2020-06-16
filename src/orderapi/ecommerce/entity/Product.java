@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import orderapi.ecommerce.entity.enums.Status;
 
@@ -57,6 +58,9 @@ public class Product {
 		inverseJoinColumns= {@JoinColumn(name="fk_clasification")}
 	)
 	private List<Clasification> clasifications;
+	
+	@Version
+	private Long version;
 	
 	public Image getImage() {
 		return image;
