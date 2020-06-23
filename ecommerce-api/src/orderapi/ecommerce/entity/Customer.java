@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -20,8 +22,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.jboss.logging.Logger;
-
 import orderapi.ecommerce.entity.enums.CustomerStatus;
 
 @Entity
@@ -33,7 +33,7 @@ public class Customer implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Transient
-	private static final Logger logger = Logger.getLogger(Customer.class);
+	private static final Logger logger = Logger.getLogger(Customer.class.getCanonicalName());
 	
 	@Id
 	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_sec" )
@@ -51,6 +51,7 @@ public class Customer implements Serializable{
 	private String fullName;
 	
 	//@Temporal(TemporalType.DATE)
+	@JsonbDateFormat("dd/MM/yyyy")
 	@Column(name="birthday", nullable=false)
 	private LocalDate birthday;
 	

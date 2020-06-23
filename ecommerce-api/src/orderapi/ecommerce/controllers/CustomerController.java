@@ -1,4 +1,4 @@
-package orderapi.ecommerce;
+package orderapi.ecommerce.controllers;
 
 import java.util.List;
 import javax.ejb.Stateless;
